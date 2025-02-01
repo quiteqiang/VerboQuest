@@ -1,6 +1,6 @@
-package com.example.demo.exception;
+package com.example.VerboQuest.exception;
 
-import com.example.demo.pojo.ResponseMessage;
+import com.example.VerboQuest.pojo.ResponseMessage;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;

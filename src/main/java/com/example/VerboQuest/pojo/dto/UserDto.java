@@ -1,4 +1,4 @@
-package com.example.demo.pojo.dto;
+package com.example.VerboQuest.pojo.dto;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;

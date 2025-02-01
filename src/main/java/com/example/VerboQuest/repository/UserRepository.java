@@ -1,6 +1,6 @@
-package com.example.demo.repository;
+package com.example.VerboQuest.repository;
 
-import com.example.demo.pojo.User;
+import com.example.VerboQuest.pojo.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

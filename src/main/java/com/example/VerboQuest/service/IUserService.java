@@ -1,7 +1,7 @@
-package com.example.demo.service;
+package com.example.VerboQuest.service;
 
-import com.example.demo.pojo.User;
-import com.example.demo.pojo.dto.UserDto;
+import com.example.VerboQuest.pojo.User;
+import com.example.VerboQuest.pojo.dto.UserDto;
 
 public interface IUserService {
     /**
@@ -13,7 +13,15 @@ public interface IUserService {
     User getUser(Integer userId);
 
     /**
-     *
+     * Edit user
+     * @param user
      * */
     User edit(UserDto user);
+
+    /**
+     * Delete user
+     *
+     * @param userId
+     */
+    void delete(Integer userId);
 }
