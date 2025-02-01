@@ -28,7 +28,13 @@ public class UserService implements IUserService{
         BeanUtils.copyProperties(user, userPojo);
 
         //调用数据访问类的方法
-        userRepository.save(userPojo);
-        return userPojo;
+        return userRepository.save(userPojo);
+    }
+
+    @Override
+    public User edit(UserDto user) {
+        User userPojo = new User();
+        BeanUtils.copyProperties(user, userPojo);
+        return userRepository.save(userPojo);
     }
 }

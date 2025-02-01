@@ -23,10 +23,16 @@ public class UserController {
 
     //查询
     @GetMapping("/{userId}")        // localhost:8088/user/1
-    public ResponseMessage add (@PathVariable Integer userId) {
+    public ResponseMessage get(@PathVariable Integer userId) {
         User userNew = userService.getUser(userId);
         return ResponseMessage.success(userNew);
     }
     //修改
+    @PutMapping
+    public ResponseMessage<User> edit(@Validated @RequestBody UserDto user) {
+        User userNew = userService.edit(user);
+        return ResponseMessage.success(userNew);
+    }
+
     //删除
 }
