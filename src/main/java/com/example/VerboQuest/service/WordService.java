@@ -1,5 +1,6 @@
 package com.example.VerboQuest.service;
 
+import com.example.VerboQuest.pojo.User;
 import com.example.VerboQuest.pojo.Word;
 import com.example.VerboQuest.pojo.dto.WordDto;
 import com.example.VerboQuest.repository.WordRepository;
@@ -14,6 +15,13 @@ public class WordService implements IWordService{
     WordRepository wordRepository;
 
     @Override
+    public Word getWord(Integer wordId) {
+        return wordRepository.findById(wordId).orElseThrow( () -> {
+            throw new IllegalArgumentException("Word doesn't exist, invalid parameter");
+        });
+    }
+
+    @Override
     public Word add(WordDto word) {
 
         Word wordPojo = new Word();
@@ -22,5 +30,10 @@ public class WordService implements IWordService{
 
         //调用数据访问类的方法
         return wordRepository.save(wordPojo);
+    }
+
+    @Override
+    public void delete(Integer wordId) {
+        wordRepository.deleteById(wordId);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.VerboQuest.service;
 
+import com.example.VerboQuest.pojo.User;
 import com.example.VerboQuest.pojo.Word;
 import com.example.VerboQuest.pojo.dto.WordDto;
 
@@ -9,4 +10,19 @@ public interface IWordService {
      * @param word
      * */
     Word add(WordDto word);
+
+    /**
+     * Get a word
+     * @param wordId
+     * */
+    Word getWord(Integer wordId);
+
+    /**
+     * Delete word
+     *
+     * @param wordId
+     */
+    void delete(Integer wordId);
+
+
 }
