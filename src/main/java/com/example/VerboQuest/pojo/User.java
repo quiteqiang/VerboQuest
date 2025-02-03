@@ -2,6 +2,7 @@ package com.example.VerboQuest.pojo;
 
 import jakarta.persistence.*;
 
+// This User Module is for future extension.
 @Table(name="tb_user")
 @Entity
 public class User {
