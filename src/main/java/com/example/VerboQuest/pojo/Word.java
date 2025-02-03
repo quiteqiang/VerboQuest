@@ -1,13 +1,16 @@
 package com.example.VerboQuest.pojo;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
+@Table(name="tb_word")
+@Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Word {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,11 +18,11 @@ public class Word {
     private Integer wordId;
 
     @Column(name="word")
-    private Integer word;
+    private String word;
 
-    @CreatedDate
+    @CreationTimestamp
     @Column(name="time_created")
-    private Date timeCreated;
+    private Timestamp timeCreated;
 
     @Override
     public String toString() {
@@ -38,19 +41,19 @@ public class Word {
         this.wordId = wordId;
     }
 
-    public Integer getWord() {
+    public String getWord() {
         return word;
     }
 
-    public void setWord(Integer word) {
+    public void setWord(String word) {
         this.word = word;
     }
 
-    public Date getTimeCreated() {
+    public Timestamp getTimeCreated() {
         return timeCreated;
     }
 
-    public void setTimeCreated(Date timeCreated) {
+    public void setTimeCreated(Timestamp timeCreated) {
         this.timeCreated = timeCreated;
     }
 }
