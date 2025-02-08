@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController //接口方法返回对象 转换为json text
 @RequestMapping("/user")  // localhost:8088/user/**
+@CrossOrigin
 public class UserController {
     //增加
     @Autowired
@@ -24,7 +25,6 @@ public class UserController {
     //查询
     @GetMapping("/{userId}")        // localhost:8088/user/1
     public ResponseMessage get(@PathVariable Integer userId) {
-        System.out.println("get userId " + userId);
         User userNew = userService.getUser(userId);
         return ResponseMessage.success(userNew);
     }

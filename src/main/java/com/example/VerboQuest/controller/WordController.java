@@ -9,8 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("/word")
+@CrossOrigin
 public class WordController {
     @Autowired
     IWordService wordService;
@@ -32,6 +36,15 @@ public class WordController {
     @DeleteMapping("/{wordId}")        // localhost:8088/user/1
     public ResponseMessage delete(@PathVariable Integer wordId) {
         wordService.delete(wordId);
+        return ResponseMessage.success();
+    }
+
+    @PostMapping("/{deleteBatchUser}")
+    public ResponseMessage deleteBatchUser(@RequestBody Integer[] ids) {
+        // 暂时直接删除，不做response 处理
+        for (Integer id: ids) {
+            wordService.delete(id);
+        }
         return ResponseMessage.success();
     }
 }
