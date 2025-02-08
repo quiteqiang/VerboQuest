@@ -24,13 +24,37 @@ public class Word {
     @Column(name="time_created")
     private Timestamp timeCreated;
 
+    @Column(name="definition")
+    private String definition;
+
+    @Column(name="sentence")
+    private String sentence;
+
     @Override
     public String toString() {
         return "Word{" +
                 "wordId=" + wordId +
-                ", word=" + word +
+                ", word='" + word + '\'' +
                 ", timeCreated=" + timeCreated +
+                ", definition='" + definition + '\'' +
+                ", sentence='" + sentence + '\'' +
                 '}';
+    }
+
+    public String getDefinition() {
+        return definition;
+    }
+
+    public void setDefinition(String definition) {
+        this.definition = definition;
+    }
+
+    public String getSentence() {
+        return sentence;
+    }
+
+    public void setSentence(String sentence) {
+        this.sentence = sentence;
     }
 
     public Integer getWordId() {

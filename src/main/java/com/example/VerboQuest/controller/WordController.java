@@ -6,6 +6,7 @@ import com.example.VerboQuest.pojo.Word;
 import com.example.VerboQuest.pojo.dto.WordDto;
 import com.example.VerboQuest.service.IWordService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,6 +47,13 @@ public class WordController {
             wordService.delete(id);
         }
         return ResponseMessage.success();
+    }
+
+    @GetMapping("/random/{num}")
+    public ResponseMessage<List<Word>> fetchRandomWords(@PathVariable Integer num) {
+        // Generate random
+        List<Word> ans = wordService.getRandomWords(num);
+        return ResponseMessage.success(ans);
     }
 
     /**

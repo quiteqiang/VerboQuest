@@ -12,6 +12,7 @@ public class WordDto {
     @NotBlank(message="Word can't be empty")
     private String word;
     private Date timeCreated;
+    private String definition;
 
     @Override
     public String toString() {
@@ -19,8 +20,28 @@ public class WordDto {
                 "wordId=" + wordId +
                 ", word='" + word + '\'' +
                 ", timeCreated=" + timeCreated +
+                ", definition='" + definition + '\'' +
+                ", sentence='" + sentence + '\'' +
                 '}';
     }
+
+    public String getSentence() {
+        return sentence;
+    }
+
+    public void setSentence(String sentence) {
+        this.sentence = sentence;
+    }
+
+    public String getDefinition() {
+        return definition;
+    }
+
+    public void setDefinition(String definition) {
+        this.definition = definition;
+    }
+
+    private String sentence;
 
     public Integer getWordId() {
         return wordId;

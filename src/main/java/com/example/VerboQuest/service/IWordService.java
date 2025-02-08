@@ -4,6 +4,8 @@ import com.example.VerboQuest.pojo.User;
 import com.example.VerboQuest.pojo.Word;
 import com.example.VerboQuest.pojo.dto.WordDto;
 
+import java.util.List;
+
 public interface IWordService {
     /**
      * Add word
@@ -23,6 +25,8 @@ public interface IWordService {
      * @param wordId
      */
     void delete(Integer wordId);
+
+    List<Word> getRandomWords(Integer num);
 
 
 }
