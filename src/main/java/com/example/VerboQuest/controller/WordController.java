@@ -47,4 +47,12 @@ public class WordController {
         }
         return ResponseMessage.success();
     }
+
+    /**
+     * /TODO: 增加 / 修改word
+     */
+//    @PatchMapping("/{updateWords}")
+//    public ResponseMessage updateWords (@Validated @RequestBody WordDto word) {
+//
+//    }
 }
