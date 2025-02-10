@@ -34,7 +34,7 @@ public class WordService implements IWordService{
         int range = max - min + 1;   // TODO : hack trick here
 
         List<Word> ans = new ArrayList<>();
-        for (int i =0; i<max; i++) {
+        for (int i =0; i<num; i++) {
             int rand = (int)(Math.random() * range) + min;
             ans.add(allWords.get(rand));
         }

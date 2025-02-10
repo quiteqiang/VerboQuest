@@ -2,6 +2,7 @@ package com.example.VerboQuest.pojo;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -38,8 +39,32 @@ public class Word {
                 ", timeCreated=" + timeCreated +
                 ", definition='" + definition + '\'' +
                 ", sentence='" + sentence + '\'' +
+                ", known=" + known +
+                ", forgot=" + forgot +
                 '}';
     }
+
+    public Integer getKnown() {
+        return known;
+    }
+
+    public void setKnown(Integer known) {
+        this.known = known;
+    }
+
+    public Integer getForgot() {
+        return forgot;
+    }
+
+    public void setForgot(Integer forgot) {
+        this.forgot = forgot;
+    }
+
+    @Column(name="known")
+    private Integer known=0;
+
+    @Column(name="forgot")
+    private Integer forgot=0;
 
     public String getDefinition() {
         return definition;
