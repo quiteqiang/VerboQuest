@@ -13,6 +13,8 @@ public class WordDto {
     private String word;
     private Date timeCreated;
     private String definition;
+    private Integer known;
+    private Integer forgot;
 
     @Override
     public String toString() {
@@ -21,8 +23,26 @@ public class WordDto {
                 ", word='" + word + '\'' +
                 ", timeCreated=" + timeCreated +
                 ", definition='" + definition + '\'' +
+                ", known=" + known +
+                ", forgot=" + forgot +
                 ", sentence='" + sentence + '\'' +
                 '}';
+    }
+
+    public Integer getKnown() {
+        return known;
+    }
+
+    public void setKnown(Integer known) {
+        this.known = known;
+    }
+
+    public Integer getForgot() {
+        return forgot;
+    }
+
+    public void setForgot(Integer forgot) {
+        this.forgot = forgot;
     }
 
     public String getSentence() {

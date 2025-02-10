@@ -56,4 +56,9 @@ public class WordService implements IWordService{
     public void delete(Integer wordId) {
         wordRepository.deleteById(wordId);
     }
+
+    @Override
+    public void update(Word word) {
+         wordRepository.save(word);
+    }
 }

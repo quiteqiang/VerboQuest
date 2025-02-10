@@ -56,6 +56,15 @@ public class WordController {
         return ResponseMessage.success(ans);
     }
 
+    @PatchMapping("/known/{wordId}")
+    public ResponseMessage addKnown(@PathVariable Integer wordId) {
+        // 暂时直接删除，不做response 处理
+        Word word = wordService.getWord(wordId);
+        word.setKnown(word.getKnown()+1);
+        wordService.update(word);
+        return ResponseMessage.success();
+    }
+
     /**
      * /TODO: 增加 / 修改word
      */

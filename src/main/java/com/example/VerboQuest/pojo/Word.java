@@ -31,6 +31,12 @@ public class Word {
     @Column(name="sentence")
     private String sentence;
 
+    @Column(name="known")
+    private Integer known=0;
+
+    @Column(name="forgot")
+    private Integer forgot=0;
+
     @Override
     public String toString() {
         return "Word{" +
@@ -59,12 +65,6 @@ public class Word {
     public void setForgot(Integer forgot) {
         this.forgot = forgot;
     }
-
-    @Column(name="known")
-    private Integer known=0;
-
-    @Column(name="forgot")
-    private Integer forgot=0;
 
     public String getDefinition() {
         return definition;
