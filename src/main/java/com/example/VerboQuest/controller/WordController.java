@@ -65,6 +65,15 @@ public class WordController {
         return ResponseMessage.success();
     }
 
+    @PatchMapping("/forgot/{wordId}")
+    public ResponseMessage addForgot(@PathVariable Integer wordId) {
+        // 暂时直接删除，不做response 处理
+        Word word = wordService.getWord(wordId);
+        word.setForgot(word.getForgot()+1);
+        wordService.update(word);
+        return ResponseMessage.success();
+    }
+
     /**
      * /TODO: 增加 / 修改word
      */
