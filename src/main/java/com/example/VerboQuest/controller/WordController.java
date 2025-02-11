@@ -40,9 +40,11 @@ public class WordController {
         return ResponseMessage.success();
     }
 
-    //TODO: Bug
-    @PostMapping("/{deleteBatchUser}")
-    public ResponseMessage deleteBatchUser(@RequestBody Integer[] ids) {
+    /**
+     * Delete multiple
+     * */
+    @PostMapping("/{deleteBatchWord}")
+    public ResponseMessage deleteBatchWord(@RequestBody Integer[] ids) {
         // 暂时直接删除，不做response 处理
         for (Integer id: ids) {
             wordService.delete(id);
