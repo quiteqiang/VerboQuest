@@ -40,6 +40,7 @@ public class WordController {
         return ResponseMessage.success();
     }
 
+    //TODO: Bug
     @PostMapping("/{deleteBatchUser}")
     public ResponseMessage deleteBatchUser(@RequestBody Integer[] ids) {
         // 暂时直接删除，不做response 处理
@@ -53,6 +54,13 @@ public class WordController {
     public ResponseMessage<List<Word>> fetchRandomWords(@PathVariable Integer num) {
         // Generate random
         List<Word> ans = wordService.getRandomWords(num);
+        return ResponseMessage.success(ans);
+    }
+
+    @GetMapping("/nextRandom/")
+    public ResponseMessage<Word> nextWord(@RequestBody Integer[] ids) {
+        // Generate random
+        Word ans = wordService.getFilteredRandomWord(ids);
         return ResponseMessage.success(ans);
     }
 

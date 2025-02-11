@@ -29,4 +29,6 @@ public interface IWordService {
     List<Word> getRandomWords(Integer num);
 
     void update(Word word);
+
+    Word getFilteredRandomWord(Integer[] nums);
 }

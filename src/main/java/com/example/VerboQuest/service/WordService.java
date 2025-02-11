@@ -42,6 +42,26 @@ public class WordService implements IWordService{
     }
 
     @Override
+    public Word getFilteredRandomWord(Integer[] nums) {
+
+        List<Word> allWords = (List<Word>) wordRepository.findAll();
+        int min = 1;
+        int max = allWords.size();
+        int range = max - min + 1;   // TODO : hack trick here
+
+        Word ans = new Word();
+        int tryCount = 5;
+        for (int i =0; i<tryCount; i++) {
+            int rand = (int)(Math.random() * range) + min;
+            for (int n : nums) {
+                if (n ==rand) continue;
+                else ans = allWords.get(rand);
+            }
+        }
+        return ans;
+    }
+
+    @Override
     public Word add(WordDto word) {
 
         Word wordPojo = new Word();
