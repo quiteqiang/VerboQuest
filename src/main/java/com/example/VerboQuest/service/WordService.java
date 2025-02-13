@@ -10,7 +10,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class WordService implements IWordService{
@@ -34,8 +36,13 @@ public class WordService implements IWordService{
         int range = max - min;   // TODO : hack trick here
 
         List<Word> ans = new ArrayList<>();
+        Set<Integer> generatedMap = new HashSet<>();
         for (int i =0; i<num; i++) {
             int rand = (int)(Math.random() * range) + min;
+            while (generatedMap.contains(rand)) {
+                rand = (int)(Math.random() * range) + min;
+            }
+            generatedMap.add(rand);
             ans.add(allWords.get(rand));
         }
         return ans;

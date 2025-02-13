@@ -55,6 +55,7 @@ public class WordController {
     @GetMapping("/random/{num}")
     public ResponseMessage<List<Word>> fetchRandomWords(@PathVariable Integer num) {
         // Generate random
+        // TODO: 前端get出来重复id的 word
         List<Word> ans = wordService.getRandomWords(num);
         return ResponseMessage.success(ans);
     }
