@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class WordService implements IWordService{
@@ -50,22 +47,17 @@ public class WordService implements IWordService{
 
     @Override
     public Word getFilteredRandomWord(Integer[] nums) {
-
         List<Word> allWords = (List<Word>) wordRepository.findAll();
         int min = 1;
         int max = allWords.size();
         int range = max - min;   // TODO : hack trick here
 
-        Word ans = new Word();
-        int tryCount = 5;
-        for (int i =0; i<tryCount; i++) {
-            int rand = (int)(Math.random() * range) + min;
-            for (int n : nums) {
-                if (n ==rand) continue;
-                else ans = allWords.get(rand);
-            }
+        Set<Integer> idMap = new HashSet<>(Arrays.asList(nums));
+        int rand = (int)(Math.random() * range) + min;
+        while (idMap.contains(allWords.get(rand).getWordId())) {
+            rand = (int)(Math.random() * range) + min;
         }
-        return ans;
+        return allWords.get(rand);
     }
 
     @Override
