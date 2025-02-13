@@ -54,7 +54,7 @@ public class WordService implements IWordService{
         List<Word> allWords = (List<Word>) wordRepository.findAll();
         int min = 1;
         int max = allWords.size();
-        int range = max - min + 1;   // TODO : hack trick here
+        int range = max - min;   // TODO : hack trick here
 
         Word ans = new Word();
         int tryCount = 5;
