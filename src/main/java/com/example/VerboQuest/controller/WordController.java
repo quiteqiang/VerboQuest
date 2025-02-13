@@ -59,7 +59,7 @@ public class WordController {
         return ResponseMessage.success(ans);
     }
 
-    @GetMapping("/nextRandom/")
+    @PostMapping("/nextRandom/")
     public ResponseMessage<Word> nextWord(@RequestBody Integer[] ids) {
         // Generate random
         Word ans = wordService.getFilteredRandomWord(ids);
