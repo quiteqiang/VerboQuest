@@ -18,6 +18,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/ai")
+@CrossOrigin
 public class ChatController {
 
     @Resource
@@ -47,8 +48,7 @@ public class ChatController {
      * */
     @GetMapping("/{id}/aiGen")
     public ResponseMessage<Word> aiGen(String message, @PathVariable Integer id) {
-//        System.out.println("id   " + id + "  msg.  " + message);
-        String word = "Use completely new simple english to explain " + message + "including: \n1.word definition\n2. sample sentence" ;
+        String word = "Use completely new simple english to explain " + message + "including: \n1.word definition\n2. sample sentence\n\n Only give one Definition and one Sample Sentence" ;
         chatHistoryList.add(new UserMessage(word));
         Prompt prompt = new Prompt(chatHistoryList);
         ChatResponse chatResponse = chatModel.call(prompt);
@@ -66,13 +66,25 @@ public class ChatController {
          * */
 
         List<String> items = Arrays.asList(chatResponse.getResult().getOutput().getText().split("[\\r\\n]+"));
+        // Hard code for now
         String definition = items.get(1);
         String sentence = items.get(3);
+        // Debug purpose only, definition logic needs enahce
+//        for (String s : items) {
+//            System.out.println(s);
+//            System.out.println("---------------------");
+//        }
         Word wordObj = wordService.getWord(id);
         wordObj.setDefinition(definition);
         wordObj.setSentence(sentence);
         // 需要吧 definition 和 sentence 分出来 -> path to DB
         wordService.update(wordObj);
+
+//        Word wordObj = new Word();
+//        wordObj.setSentence("- *Physical meaning:* \\\"She couldn't read the sign on the road because she was myopic and forgot her glasses.\\\"  ");
+//        wordObj.setDefinition("\\\"Myopic\\\" means being unable to see things clearly when they are far away. It can also describe someone who only thinks about what is happening right now or in the near future, without considering the bigger picture or long-term effects.");
+//        wordObj.setWordId(id);
+//        wordObj.setWord(message);
 
         return ResponseMessage.success(wordObj);
     }
