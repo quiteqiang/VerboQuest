@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.ai.chat.client.ChatClient;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/ai")
@@ -47,8 +48,8 @@ public class ChatController {
      * Generate word definition & sample sentence
      * */
     @GetMapping("/{id}/aiGen")
-    public ResponseMessage<Word> aiGen(String message, @PathVariable Integer id) {
-        String word = "Use completely new simple english to explain " + message + "including: \n1.word definition\n2. sample sentence\n\n Only give one Definition and one Sample Sentence" ;
+    public ResponseMessage<Word> aiGen(String message, @PathVariable Integer id) throws InterruptedException {
+        String word = "Use completely new simple english to explain " + message + "including: \n1.word definition\n2. sample sentence\n\n Only give one Definition and one Sample Sentence";
         chatHistoryList.add(new UserMessage(word));
         Prompt prompt = new Prompt(chatHistoryList);
         ChatResponse chatResponse = chatModel.call(prompt);
@@ -85,6 +86,8 @@ public class ChatController {
 //        wordObj.setDefinition("\\\"Myopic\\\" means being unable to see things clearly when they are far away. It can also describe someone who only thinks about what is happening right now or in the near future, without considering the bigger picture or long-term effects.");
 //        wordObj.setWordId(id);
 //        wordObj.setWord(message);
+//        TimeUnit.SECONDS.sleep((long)2.0);
+//        return ResponseMessage.error();
 
         return ResponseMessage.success(wordObj);
     }

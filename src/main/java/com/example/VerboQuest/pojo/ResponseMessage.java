@@ -45,4 +45,7 @@ public class ResponseMessage<T> {
     public static <T> ResponseMessage<T> success() {
         return new ResponseMessage<>(HttpStatus.OK.value(), "success", null);
     }
+    public static <T> ResponseMessage<T> error() {
+        return new ResponseMessage<>(HttpStatus.SERVICE_UNAVAILABLE.value(), "failed", null);
+    }
 }
