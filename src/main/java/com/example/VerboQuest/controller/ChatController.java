@@ -35,21 +35,20 @@ public class ChatController {
     public ChatResponse test(String message) {
         chatHistoryList.add(new UserMessage(message));
         Prompt prompt = new Prompt(chatHistoryList);
-        System.out.println("postman:   "  + message);
         ChatResponse chatResponse = chatModel.call(prompt);
         if (chatResponse.getResult() != null && chatResponse.getResult().getOutput() != null) {
             chatHistoryList.add(chatResponse.getResult().getOutput());
         }
-        System.out.println(chatResponse.getResult().getOutput().getText());
-        System.out.println("------------------------");
-        System.out.println(chatResponse.getMetadata());
         return chatResponse;
     }
 
+    /**
+     * Generate word definition & sample sentence
+     * */
     @GetMapping("/{id}/aiGen")
     public ResponseMessage<Word> aiGen(String message, @PathVariable Integer id) {
 //        System.out.println("id   " + id + "  msg.  " + message);
-        String word = "Use simple english to explain " + message + "including: \n1.word definition\n2. sample sentence" ;
+        String word = "Use completely new simple english to explain " + message + "including: \n1.word definition\n2. sample sentence" ;
         chatHistoryList.add(new UserMessage(word));
         Prompt prompt = new Prompt(chatHistoryList);
         ChatResponse chatResponse = chatModel.call(prompt);
